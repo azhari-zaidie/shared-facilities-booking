@@ -1,0 +1,225 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication1.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Cheq Ayu System</title>
+
+
+    
+
+    <link href="Content/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="Content/assets/bootstrap/js/bootstrap.min.js"></script>
+    <link href="Content/assets/fonts/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+</head>
+    <style>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #3a3b45;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #3a3b45;
+  color: white;
+}
+
+</style>
+
+<body id="page-top">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="color: var(--bs-red);background: var(--bs-dark);">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"></div>
+                    <div class="sidebar-brand-text mx-3"><span>Cheq Ayu<br>System<br></span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" ><asp:HyperLink  class="nav-link active" ID="HyperLink3" runat="server" NavigateUrl="~/default.aspx" Text="Master Pages Tutorials" ><i class="fas fa-tachometer-alt"></i><span>Home</span></asp:HyperLink></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link active" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fa fa-list-alt"></i>My Restaurants</a>
+                        <div class="dropdown-menu">
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink5" runat="server" NavigateUrl="~/branchList.aspx" Text="List Of Employees" >List of Branches</asp:HyperLink>
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink6" runat="server" NavigateUrl="~/branchNew.aspx" Text="Add New Employees" >Add New Branch</asp:HyperLink>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link active" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fa fa-list-alt"></i>Employees</a>
+                        <div class="dropdown-menu">
+                            <asp:HyperLink class="dropdown-item" ID="link" runat="server" NavigateUrl="~/empList.aspx" Text="List Of Employees" >List of Employees</asp:HyperLink>
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink4" runat="server" NavigateUrl="~/managerNew.aspx" Text="Add New Manager" >Add New Manager</asp:HyperLink>
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink1" runat="server" NavigateUrl="~/managerList.aspx" Text="List of Manager" >List of Manager</asp:HyperLink>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link active" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fa fa-list-alt"></i>Jobs Description</a>
+                        <div class="dropdown-menu">
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink8" runat="server" NavigateUrl="~/listJob.aspx" Text="List Of Employees" >List Of Department</asp:HyperLink>
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink9" runat="server" NavigateUrl="~/listDept.aspx" Text="Add New Manager" >List Of Job</asp:HyperLink>
+                        </div>
+                    </li>
+                    <li class="nav-item" ><asp:HyperLink  class="nav-link active" ID="HyperLink10" runat="server" NavigateUrl="~/location.aspx" Text="Master Pages Tutorials" ><i class="fas fa-tachometer-alt"></i><span>Location Management</span></asp:HyperLink></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link active" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fa fa-list-alt"></i>Report</a>
+                        <div class="dropdown-menu">
+                            <asp:HyperLink class="dropdown-item" ID="HyperLink7" runat="server" NavigateUrl="~/reportAdmin.aspx" Text="List Of Employees" >Employee Chart</asp:HyperLink>
+                        </div>
+                    </li>
+                    <li class="nav-item" ><asp:HyperLink  class="nav-link active" ID="HyperLink2" runat="server" NavigateUrl="~/profile.aspx" Text="Master Pages Tutorials" ><i class="fas fa-tachometer-alt"></i><span>Profile</span></asp:HyperLink></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Cheyq Ayu 2022</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    </form>
+</body>
+<script src="Content/assets/js/theme.js"></script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+    </script>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#GridView1').DataTable();
+        });
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(function () {
+            $('[id*=GridView1]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                "responsive": true,
+                "sPaginationType": "full_numbers"
+            });
+        });
+
+        function PrintPage() {
+            window.print();
+        }
+    </script>
+</html>

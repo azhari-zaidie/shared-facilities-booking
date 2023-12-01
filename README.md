@@ -1,4 +1,4 @@
-# shared-facilities-booking using ASP.NET with MSSQL Database
+# CHEQ-AYU Management using ASP.NET with MSSQL Database
 
 Home page. Dashboard
 ![1](https://github.com/azhari-zaidie/shared-facilities-booking/assets/99009414/a1ff79c9-4727-4559-ad8e-79072c432dd4)
